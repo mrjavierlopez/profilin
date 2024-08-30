@@ -1,0 +1,315 @@
+<html><head><base href="https://www.remax-mazatlan.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Javier Lopez - RE/MAX Mazatlán</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        transition: opacity 0.5s ease;
+        overflow-x: hidden;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(51, 51, 51, 0.8);
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 1;
+    }
+    h1 {
+        color: #00aeef;
+        text-align: center;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .agent-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .agent-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 3px solid #00aeef;
+        transition: transform 0.5s ease;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-top: 10px;
+        color: #00aeef;
+        transition: opacity 0.3s ease;
+    }
+    input, select, textarea {
+        margin-bottom: 15px;
+        padding: 8px;
+        border: 1px solid #00aeef;
+        border-radius: 4px;
+        background-color: rgba(26, 26, 26, 0.8);
+        color: #ffffff;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    button {
+        background-color: #00aeef;
+        color: #1a1a1a;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: background-color 0.3s, transform 0.3s ease;
+    }
+    button:hover {
+        background-color: #0077a3;
+        transform: scale(1.05);
+    }
+    #languageToggle {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        background-color: #00aeef;
+    }
+    .highlight {
+        color: #00aeef;
+        transition: color 0.5s ease;
+    }
+    .fade-out {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .fish-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+    .fish {
+        position: absolute;
+        width: 30px;
+        height: 15px;
+        background-color: #00aeef;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        opacity: 0.6;
+        animation: swim 20s linear infinite;
+    }
+    .fish::after {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 85%;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-left: 10px solid #00aeef;
+        border-bottom: 5px solid transparent;
+        transform: rotate(-45deg);
+    }
+    .fish-shadow {
+        position: absolute;
+        width: 30px;
+        height: 5px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        filter: blur(2px);
+        animation: swim-shadow 20s linear infinite;
+    }
+    @keyframes swim {
+        0% { transform: translate(-100px, 100px) rotate(10deg); }
+        25% { transform: translate(25vw, 30vh) rotate(-5deg); }
+        50% { transform: translate(50vw, 50vh) rotate(15deg); }
+        75% { transform: translate(75vw, 70vh) rotate(-10deg); }
+        100% { transform: translate(100vw, 90vh) rotate(5deg); }
+    }
+    @keyframes swim-shadow {
+        0% { transform: translate(-90px, 110px) scale(1, 0.3); }
+        25% { transform: translate(calc(25vw + 10px), calc(30vh + 10px)) scale(1, 0.3); }
+        50% { transform: translate(calc(50vw + 10px), calc(50vh + 10px)) scale(1, 0.3); }
+        75% { transform: translate(calc(75vw + 10px), calc(70vh + 10px)) scale(1, 0.3); }
+        100% { transform: translate(calc(100vw + 10px), calc(90vh + 10px)) scale(1, 0.3); }
+    }
+</style>
+</head>
+<body>
+<div class="fish-container">
+    <div class="fish" style="animation-delay: -2s;"></div>
+    <div class="fish-shadow" style="animation-delay: -2s;"></div>
+    <div class="fish" style="animation-delay: -7s; top: 30%;"></div>
+    <div class="fish-shadow" style="animation-delay: -7s; top: 30%;"></div>
+</div>
+<button id="languageToggle">English / Español</button>
+<div class="container">
+    <h1 id="mainTitle">Soñé Ayudarte a Lograr <span class="highlight">Tus Sueños</span></h1>
+    <div class="agent-info">
+        <img src="/a/8acf2aa6-19bc-489a-aaa1-7a355156aefb" alt="Fotografía de un agente inmobiliario sonriente en traje" class="agent-photo">
+        <h2>Mr. Javier Lopez</h2>
+        <p>RE/MAX Agent</p>
+        <p id="specialistText" class="highlight">Especialista en desarrollos inmobiliarios en Mazatlán</p>
+    </div>
+    
+    <form id="leadForm">
+        <label for="name" id="nameLabel">Nombre completo:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email" id="emailLabel">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phone" id="phoneLabel">Teléfono:</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="budget" id="budgetLabel">Presupuesto (MXN):</label>
+        <input type="number" id="budget" name="budget" required>
+        
+        <label for="propertyType" id="propertyTypeLabel">Tipo de propiedad que busca:</label>
+        <select id="propertyType" name="propertyType" required>
+            <option value="">Seleccione una opción</option>
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+            <option value="terreno">Terreno</option>
+            <option value="comercial">Propiedad Comercial</option>
+        </select>
+        
+        <label for="details" id="detailsLabel">Detalles adicionales de lo que busca:</label>
+        <textarea id="details" name="details" rows="4"></textarea>
+        
+        <button type="submit" id="submitButton">Enviar información</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    let isSpanish = true;
+    const recipientEmail = 'ajvier7@pm.me';
+    
+    const translations = {
+        mainTitle: {
+            es: "Soñé Ayudarte a Lograr <span class='highlight'>Tus Sueños</span>",
+            en: "I Dreamed of Helping You Achieve <span class='highlight'>Your Dreams</span>"
+        },
+        specialistText: {
+            es: "Especialista en desarrollos inmobiliarios en Mazatlán",
+            en: "Specialist in real estate developments in Mazatlán"
+        },
+        nameLabel: {
+            es: "Nombre completo:",
+            en: "Full Name:"
+        },
+        emailLabel: {
+            es: "Correo electrónico:",
+            en: "Email:"
+        },
+        phoneLabel: {
+            es: "Teléfono:",
+            en: "Phone:"
+        },
+        budgetLabel: {
+            es: "Presupuesto (MXN):",
+            en: "Budget (MXN):"
+        },
+        propertyTypeLabel: {
+            es: "Tipo de propiedad que busca:",
+            en: "Type of property you're looking for:"
+        },
+        detailsLabel: {
+            es: "Detalles adicionales de lo que busca:",
+            en: "Additional details of what you're looking for:"
+        },
+        submitButton: {
+            es: "Enviar información",
+            en: "Submit Information"
+        },
+        propertyOptions: {
+            es: ["Seleccione una opción", "Casa", "Departamento", "Terreno", "Propiedad Comercial"],
+            en: ["Select an option", "House", "Apartment", "Land", "Commercial Property"]
+        }
+    };
+
+    function updateLanguage() {
+        const lang = isSpanish ? 'es' : 'en';
+        
+        // Fade out
+        $('body').addClass('fade-out');
+        
+        setTimeout(() => {
+            $('#mainTitle').html(translations.mainTitle[lang]);
+            $('#specialistText').text(translations.specialistText[lang]);
+            $('#nameLabel').text(translations.nameLabel[lang]);
+            $('#emailLabel').text(translations.emailLabel[lang]);
+            $('#phoneLabel').text(translations.phoneLabel[lang]);
+            $('#budgetLabel').text(translations.budgetLabel[lang]);
+            $('#propertyTypeLabel').text(translations.propertyTypeLabel[lang]);
+            $('#detailsLabel').text(translations.detailsLabel[lang]);
+            $('#submitButton').text(translations.submitButton[lang]);
+            
+            $('#propertyType').find('option').each(function(index) {
+                $(this).text(translations.propertyOptions[lang][index]);
+            });
+            
+            // Fade in
+            $('body').removeClass('fade-out').addClass('fade-in');
+            
+            // Rotate photo
+            $('.agent-photo').css('transform', 'rotate(360deg)');
+            
+            // Scale title
+            $('#mainTitle').css('transform', 'scale(1.1)');
+            
+            setTimeout(() => {
+                $('.agent-photo').css('transform', 'rotate(0deg)');
+                $('#mainTitle').css('transform', 'scale(1)');
+                $('body').removeClass('fade-in');
+            }, 500);
+        }, 250);
+    }
+
+    $('#languageToggle').click(function() {
+        isSpanish = !isSpanish;
+        updateLanguage();
+    });
+
+    $('#leadForm').on('submit', function(e) {
+        e.preventDefault();
+        const formData = $(this).serialize();
+        
+        $.ajax({
+            url: 'https://api.remax-mazatlan.com/send-lead',
+            method: 'POST',
+            data: formData + '&recipientEmail=' + recipientEmail,
+            success: function(response) {
+                const message = isSpanish ? 
+                    'Gracias por su interés. Mr. Javier Lopez se pondrá en contacto con usted pronto.' :
+                    'Thank you for your interest. Mr. Javier Lopez will contact you soon.';
+                alert(message);
+                $('#leadForm')[0].reset();
+            },
+            error: function() {
+                const errorMessage = isSpanish ?
+                    'Hubo un error al enviar su información. Por favor, inténtelo de nuevo más tarde.' :
+                    'There was an error sending your information. Please try again later.';
+                alert(errorMessage);
+            }
+        });
+    });
+
+    // Initial language setup
+    updateLanguage();
+});
+</script>
+</body>
+</html>
